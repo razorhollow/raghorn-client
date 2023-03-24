@@ -1,4 +1,4 @@
-#Getting Started
+# Getting Started
 
 ## Planning Materials
 [Trello Board](https://trello.com/b/cWoBo81N/raghorn)
