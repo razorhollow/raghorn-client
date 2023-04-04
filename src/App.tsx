@@ -1,5 +1,5 @@
 // npm modules 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // page components
@@ -8,24 +8,28 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import PostList from './pages/PostList/PostList'
 
 // components
 import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import BottomNav from './components/BottomNav/BottomNav'
 
 // services
 import * as authService from './services/authService'
+import * as postService from './services/postService'
 
 // stylesheets
 import './App.css'
 
 // types
-import { User } from './types/models'
+import { Post, User } from './types/models'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
   
   const [user, setUser] = useState<User | null>(authService.getUser())
+  const [posts, setPosts] = useState<Post[]>([])
 
   const handleLogout = (): void => {
     authService.logout()
@@ -36,6 +40,15 @@ function App(): JSX.Element {
   const handleAuthEvt = (): void => {
     setUser(authService.getUser())
   }
+
+  useEffect(() => {
+    const fetchAllPosts = async() => {
+      const data = await postService.index()
+      console.log("Post Data:", data)
+      setPosts(data)
+    }
+    if (user) fetchAllPosts()
+  }, [user])
 
   return (
     <>
@@ -49,6 +62,14 @@ function App(): JSX.Element {
         <Route
           path="/login"
           element={<Login handleAuthEvt={handleAuthEvt} />}
+        />
+        <Route 
+          path='/posts'
+          element={
+            <ProtectedRoute user={user}>
+              <PostList posts={posts} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/profiles"

@@ -20,3 +20,11 @@ export interface User {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Post {
+  id: number;
+  userId: number;
+  categoryId: number;
+  title: string;
+  content: string;
+}
