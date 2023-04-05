@@ -34,6 +34,7 @@ export default function BottomNav() {
                 backgroundColor: (theme) => theme.palette.secondary.main,
                 padding: '10px',
                 marginTop: '-30px',
+                marginBottom: '10px'
               }}
             >
               <EditNoteIcon sx={{ color: '#ffffff'}} />

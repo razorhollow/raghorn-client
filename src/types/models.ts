@@ -27,4 +27,6 @@ export interface Post {
   categoryId: number;
   title: string;
   content: string;
+  createdAt: string;
+  profile: Profile;
 }

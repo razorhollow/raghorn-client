@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
+import PostHeader from '../PostHeader/PostHeader';
 
 
 //types
@@ -22,7 +23,7 @@ const PostCard = ({ post }: PostCardProps) => {
     return <div>Loading...</div>;
   }
   return (
-    <Card sx={{width: "100%", flexDirection: 'column'}}>
+    <Card sx={{width: "100%", flexDirection: 'column', marginBottom: '10px',}}>
       <CardActionArea 
         component={Link} 
         to={`/posts/${post.id}`}
@@ -32,10 +33,8 @@ const PostCard = ({ post }: PostCardProps) => {
           },
         }}
       >
+        <PostHeader post={post}/>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {post.title}
-          </Typography>
           <Typography gutterBottom variant="body2" color="text.secondary">
             {post.content}
           </Typography>
