@@ -21,9 +21,12 @@ import * as postService from './services/postService'
 
 // stylesheets
 import './App.css'
+import 'bootstrap/dist/css/bootstrap-reboot.min.css'
 
 // types
 import { Post, User } from './types/models'
+
+//theme
 
 function App(): JSX.Element {
   const navigate = useNavigate()
