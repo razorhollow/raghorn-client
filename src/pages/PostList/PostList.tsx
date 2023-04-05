@@ -1,6 +1,9 @@
 import { useState } from "react"
 import PostCard from "../../components/PostCard/PostCard";
 
+//components
+import BottomNav from "../../components/BottomNav/BottomNav";
+
 //style
 
 //types
@@ -12,11 +15,14 @@ interface PostlistProps {
 const PostList = (props: PostlistProps) => {
   console.log('PostList props:', props)
   return (
-    <main>
-      {props.posts?.map((post) => (
-        <PostCard post={post} key={post.id}/>
-      ))}
-    </main>
+    <>
+      <main>
+        {props.posts?.map((post) => (
+          <PostCard post={post} key={post.id}/>
+        ))}
+      </main>
+      <BottomNav />
+    </>
   )
 }
 

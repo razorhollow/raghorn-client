@@ -1,6 +1,6 @@
 // npm modules
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -19,7 +19,7 @@ const darkTheme = createTheme({
     mode: 'dark',
     background: {
       default: '#132E32',
-      paper: '#2D3D3F',
+      paper: '#222222',
     },
     primary: {
       main: '#8E9B90',
@@ -36,7 +36,7 @@ const darkTheme = createTheme({
   },
 });
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+createRoot(document.getElementById('root') as HTMLElement).render(
   <ThemeProvider theme={darkTheme}>
     <React.StrictMode>
       <Router>
