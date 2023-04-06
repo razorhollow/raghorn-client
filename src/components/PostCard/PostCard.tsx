@@ -19,7 +19,6 @@ const PostCard = ({ post }: PostCardProps) => {
   if (!post) {
     return <div>Loading...</div>;
   }
-  console.log('post data:', post)
   return (
     <Card sx={{ width: "100%", flexDirection: "column", marginBottom: "10px" }}>
         <PostHeader post={post} />

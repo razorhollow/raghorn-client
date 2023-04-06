@@ -1,10 +1,20 @@
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Typography  from '@mui/material/Typography';
 
 import { Post } from '../../types/models';
 
 interface PostHeaderProps {
   post: Post | null;
+}
+
+function hoursSince(date: string): number {
+  const now = new Date()
+  const createdAt = new Date(date)
+  const diffInMs = Math.abs(now - createdAt)
+  const diffInHours = Math.floor(diffInMs / 1000 / 60 / 60)
+  return diffInHours
 }
 
 function formatDate(dateString: string): string {
@@ -24,15 +34,17 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
   
   const { title, createdAt, profile } = post;
   return (
-    <CardHeader
-      avatar={
-        <Avatar aria-label="post">
-          {profile.name.charAt(0)}
-        </Avatar>
-      }
-      title={title}
-      subheader={formatDate(createdAt)}
-    />
+    <Box display='flex' alignItems='baseline'>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="post">
+            {profile.name.charAt(0)}
+          </Avatar>
+        }
+        title={title}
+        subheader={`Posted by ${post.profile.name} ${hoursSince(post.createdAt)} hours ago`}
+      />
+    </Box>
   );
 };
 

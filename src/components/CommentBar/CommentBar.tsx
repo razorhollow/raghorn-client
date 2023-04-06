@@ -31,7 +31,6 @@ const CommentBar = ({ comments }: CommentsSectionProps) => {
   };
 
   const commentsCount = comments.length;
-  console.log(comments)
   return (
     <>
       {commentsCount === 0 ? (
@@ -63,12 +62,12 @@ const CommentBar = ({ comments }: CommentsSectionProps) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           {comments.map((comment, index) => (
-            <>
-              <Typography key={index} paragraph>
+            <Box key={comment.id}>
+              <Typography paragraph>
                 {comment.comment}
               </Typography>
               <Divider textAlign='right'>{comment.profile.name}</Divider>
-            </>
+            </Box>
           ))}
         </CardContent>
       </Collapse>
