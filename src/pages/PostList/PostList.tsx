@@ -13,7 +13,6 @@ interface PostlistProps {
 }
 
 const PostList = (props: PostlistProps) => {
-  console.log('PostList props:', props)
   return (
     <>
       <main style={{marginBottom: '80px'}}>

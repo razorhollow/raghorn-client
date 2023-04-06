@@ -23,7 +23,6 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
   }
   
   const { title, createdAt, profile } = post;
-  console.log(profile.name);
   return (
     <CardHeader
       avatar={

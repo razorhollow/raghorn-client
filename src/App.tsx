@@ -47,7 +47,6 @@ function App(): JSX.Element {
   useEffect(() => {
     const fetchAllPosts = async() => {
       const data = await postService.index()
-      console.log("Post Data:", data)
       setPosts(data)
     }
     if (user) fetchAllPosts()
