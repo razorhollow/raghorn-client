@@ -1,6 +1,6 @@
 // npm modules 
 import { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 
 // page components
 import Signup from './pages/Signup/Signup'
@@ -42,6 +42,7 @@ function App(): JSX.Element {
 
   const handleAuthEvt = (): void => {
     setUser(authService.getUser())
+    navigate('/posts')
   }
 
   useEffect(() => {
@@ -57,7 +58,8 @@ function App(): JSX.Element {
     <>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
+      <Route path="/" element={user ? <Navigate to="/posts" /> : <Landing />} />
+
         <Route
           path="/signup"
           element={<Signup handleAuthEvt={handleAuthEvt} />}

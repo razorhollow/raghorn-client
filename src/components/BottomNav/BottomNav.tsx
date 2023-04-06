@@ -13,7 +13,7 @@ export default function BottomNav() {
   const [value, setValue] = useState(0);
 
   return (
-    <Box sx={{ width: 500, position: 'fixed', bottom: 0, left: 0, right: 0}}>
+    <Box sx={{ width: "100vw", position: 'fixed', bottom: 0, left: 0, right: 0}}>
       <BottomNavigation
         showLabels
         value={value}

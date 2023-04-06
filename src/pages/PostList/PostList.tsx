@@ -16,7 +16,7 @@ const PostList = (props: PostlistProps) => {
   console.log('PostList props:', props)
   return (
     <>
-      <main>
+      <main style={{marginBottom: '80px'}}>
         {props.posts?.map((post) => (
           <PostCard post={post} key={post.id}/>
         ))}
