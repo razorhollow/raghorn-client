@@ -11,7 +11,6 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import PostList from './pages/PostList/PostList'
 
 // components
-import NavBar from './components/NavBar/NavBar'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import BottomNav from './components/BottomNav/BottomNav'
 
@@ -56,7 +55,6 @@ function App(): JSX.Element {
 
   return (
     <>
-      <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
       <Route path="/" element={user ? <Navigate to="/posts" /> : <Landing />} />
 
