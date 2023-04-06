@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 import PostHeader from '../PostHeader/PostHeader';
-import CommentBar from '../CommentBar';
+import CommentBar from '../CommentBar/CommentBar';
 
 //types
 import { Post } from '../../types/models';
@@ -19,7 +19,7 @@ const PostCard = ({ post }: PostCardProps) => {
   if (!post) {
     return <div>Loading...</div>;
   }
-
+  console.log('post data:', post)
   return (
     <Card sx={{ width: "100%", flexDirection: "column", marginBottom: "10px" }}>
         <PostHeader post={post} />

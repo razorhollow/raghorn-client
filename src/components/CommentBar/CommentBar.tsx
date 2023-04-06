@@ -18,7 +18,7 @@ const CommentBox = styled.div`
 `
 
 //types
-import { Comment } from '../types/models'
+import { Comment } from '../../types/models'
 interface CommentsSectionProps {
   comments: Comment[];
 }
@@ -67,7 +67,7 @@ const CommentBar = ({ comments }: CommentsSectionProps) => {
               <Typography key={index} paragraph>
                 {comment.comment}
               </Typography>
-              <Divider />
+              <Divider textAlign='right'>{comment.profile.name}</Divider>
             </>
           ))}
         </CardContent>

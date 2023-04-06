@@ -37,4 +37,5 @@ export interface Comment {
   postId: number;
   userId: number;
   comment: string;
+  profile: Profile;
 }
