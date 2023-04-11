@@ -17,13 +17,14 @@ import BottomNav from './components/BottomNav/BottomNav'
 // services
 import * as authService from './services/authService'
 import * as postService from './services/postService'
+import * as categoryService from './services/categoryService'
 
 // stylesheets
 import './App.css'
 import 'bootstrap/dist/css/bootstrap-reboot.min.css'
 
 // types
-import { Post, User } from './types/models'
+import { Post, User, Category } from './types/models'
 
 //theme
 
@@ -32,6 +33,7 @@ function App(): JSX.Element {
   
   const [user, setUser] = useState<User | null>(authService.getUser())
   const [posts, setPosts] = useState<Post[]>([])
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const handleLogout = (): void => {
     authService.logout()
@@ -52,6 +54,15 @@ function App(): JSX.Element {
     if (user) fetchAllPosts()
   }, [user])
 
+  useEffect(() => {
+    const fetchAllCategories = async() => {
+      const categoryData = await categoryService.index()
+      console.log("Fetched categories:", categoryData)
+      setCategories(categoryData)
+    }
+    fetchAllCategories()
+  }, [user])
+
   return (
     <>
       <Routes>
@@ -69,7 +80,7 @@ function App(): JSX.Element {
           path='/posts'
           element={
             <ProtectedRoute user={user}>
-              <PostList posts={posts} />
+              <PostList posts={posts} categories={categories}/>
             </ProtectedRoute>
           }
         />

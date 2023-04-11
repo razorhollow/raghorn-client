@@ -7,9 +7,10 @@ import BottomNav from "../../components/BottomNav/BottomNav";
 //style
 
 //types
-import { Post } from '../../types/models'
+import { Post, Category } from '../../types/models'
 interface PostlistProps {
   posts: Post[] | null;
+  categories: Category[] | null;
 }
 
 const PostList = (props: PostlistProps) => {
@@ -20,7 +21,7 @@ const PostList = (props: PostlistProps) => {
           <PostCard post={post} key={post.id}/>
         ))}
       </main>
-      <BottomNav />
+      <BottomNav categories={props.categories}/>
     </>
   )
 }

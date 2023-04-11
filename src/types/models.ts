@@ -39,3 +39,11 @@ export interface Comment {
   comment: string;
   profile: Profile;
 }
+
+export interface Category {
+  id: number;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+
+}

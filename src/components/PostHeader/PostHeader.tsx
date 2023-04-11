@@ -12,7 +12,7 @@ interface PostHeaderProps {
 function hoursSince(date: string): number {
   const now = new Date()
   const createdAt = new Date(date)
-  const diffInMs = Math.abs(now - createdAt)
+  const diffInMs = Math.abs(now.getTime() - createdAt.getTime())
   const diffInHours = Math.floor(diffInMs / 1000 / 60 / 60)
   return diffInHours
 }
