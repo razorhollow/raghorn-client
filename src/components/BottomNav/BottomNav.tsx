@@ -15,6 +15,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { SelectChangeEvent } from '@mui/material/Select';
 import * as postService from '../../services/postService'
 
 //types
@@ -50,7 +51,7 @@ export default function BottomNav(props: BottomNavProps) {
     setOpen(false);
   };
 
-  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleCategoryChange = (event: SelectChangeEvent<string>) => {
     setSelectedCategory(event.target.value);
     const categoryId = parseInt(event.target.value)
     setFormData({ ...formData, categoryId: categoryId })
