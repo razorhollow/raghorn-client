@@ -11,7 +11,6 @@ async function index(): Promise<Category[]> {
     const res = await fetch(BASE_URL, {
       headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
     })
-    console.log(res)
     return await res.json() as Category[]
   } catch (error) {
     throw error

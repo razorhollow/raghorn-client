@@ -17,4 +17,27 @@ async function index(): Promise<Post[]> {
   }
 }
 
-export { index }
+async function createPost(post: Partial<Post>): Promise<Post> {
+  try {
+    const res = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${tokenService.getToken()}`,
+      },
+      body: JSON.stringify(post),
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to create post');
+    }
+
+    const createdPost = await res.json() as Post;
+    return createdPost;
+  } catch (error) {
+    console.error('Error creating post:', error);
+    throw error;
+  }
+}
+
+export { index, createPost }

@@ -30,7 +30,7 @@ const CommentBar = ({ comments }: CommentsSectionProps) => {
     setExpanded(!expanded);
   };
 
-  const commentsCount = comments.length;
+  const commentsCount = comments?.length || 0;
   return (
     <>
       {commentsCount === 0 ? (
@@ -59,19 +59,21 @@ const CommentBar = ({ comments }: CommentsSectionProps) => {
       >
         {/* <ExpandMoreIcon /> */}
       </IconButton>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          {comments.map((comment, index) => (
-            <Box key={comment.id}>
-              <Typography paragraph>
-                {comment.comment}
-              </Typography>
-              <Divider textAlign='right'>{comment.profile.name}</Divider>
-            </Box>
-          ))}
-        </CardContent>
-      </Collapse>
-    </>
+      {comments &&
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            {comments.map((comment, index) => (
+              <Box key={comment.id}>
+                <Typography paragraph>
+                  {comment.comment}
+                </Typography>
+                <Divider textAlign='right'>{comment.profile?.name || "Unknown User"}</Divider>
+              </Box>
+            ))}
+          </CardContent>
+        </Collapse>
+      }
+      </>
   );
 };
 

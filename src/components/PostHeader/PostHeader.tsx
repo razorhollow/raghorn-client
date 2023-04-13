@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -27,22 +28,24 @@ function formatDate(dateString: string): string {
   return formatter.format(date);
 }
 
+
 const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
   if (!post) {
     return <div>Loading...</div>;
   }
   
   const { title, createdAt, profile } = post;
+  const name = profile?.name || "Unknown User"
   return (
     <Box display='flex' alignItems='baseline'>
       <CardHeader
         avatar={
           <Avatar aria-label="post">
-            {profile.name.charAt(0)}
+            {name.charAt(0)}
           </Avatar>
         }
         title={title}
-        subheader={`Posted by ${post.profile.name} ${hoursSince(post.createdAt)} hours ago`}
+        subheader={`Posted by ${name} ${hoursSince(createdAt)} hours ago`}
       />
     </Box>
   );

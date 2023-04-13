@@ -46,18 +46,21 @@ function App(): JSX.Element {
     navigate('/posts')
   }
 
+  const handleNewPost = (newPost: Post) => {
+    setPosts([...posts, newPost])
+  }
+
   useEffect(() => {
     const fetchAllPosts = async() => {
       const data = await postService.index()
       setPosts(data)
     }
     if (user) fetchAllPosts()
-  }, [user])
+  }, [posts])
 
   useEffect(() => {
     const fetchAllCategories = async() => {
       const categoryData = await categoryService.index()
-      console.log("Fetched categories:", categoryData)
       setCategories(categoryData)
     }
     fetchAllCategories()
@@ -80,7 +83,7 @@ function App(): JSX.Element {
           path='/posts'
           element={
             <ProtectedRoute user={user}>
-              <PostList posts={posts} categories={categories}/>
+              <PostList posts={posts} categories={categories} user={user} handleNewPost={handleNewPost}/>
             </ProtectedRoute>
           }
         />
