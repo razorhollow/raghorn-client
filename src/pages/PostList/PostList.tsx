@@ -11,21 +11,20 @@ interface PostlistProps {
   categories: Category[] | null;
   user: User | null;
   handleNewPost: (newPost: Post) => void;
+  handleDeletePost: (id: number) => void
 }
 
 const PostList = (props: PostlistProps) => {
-  const [posts, setPosts] = useState(props.posts || []);
 
-
-  // useEffect(()=> {
-  //   console.log("PostListProps:", props)
-  // })
+  useEffect(()=> {
+    console.log("PostListProps:", props)
+  })
 
   return (
     <>
       <main style={{ marginBottom: "80px" }}>
         {Array.isArray(props.posts) && props.posts?.map((post) => (
-          <PostCard post={post} key={post.id} />
+          <PostCard post={post} key={post.id} handleDeletePost={props.handleDeletePost} user={props.user}/>
         ))}
       </main>
       <BottomNav categories={props.categories} user={props.user} handleNewPost={props.handleNewPost} />

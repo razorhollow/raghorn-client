@@ -50,13 +50,18 @@ function App(): JSX.Element {
     setPosts([...posts, newPost])
   }
 
+  const handleDeletePost = async (id: number) => {
+    const deletedPost = await postService.deletePost(id)
+    setPosts(posts.filter(p => p.id !== id))
+  }
+
   useEffect(() => {
     const fetchAllPosts = async() => {
       const data = await postService.index()
       setPosts(data)
     }
     if (user) fetchAllPosts()
-  }, [posts])
+  }, [user])
 
   useEffect(() => {
     const fetchAllCategories = async() => {
@@ -83,7 +88,7 @@ function App(): JSX.Element {
           path='/posts'
           element={
             <ProtectedRoute user={user}>
-              <PostList posts={posts} categories={categories} user={user} handleNewPost={handleNewPost}/>
+              <PostList posts={posts} categories={categories} user={user} handleNewPost={handleNewPost} handleDeletePost={handleDeletePost}/>
             </ProtectedRoute>
           }
         />

@@ -40,4 +40,17 @@ async function createPost(post: Partial<Post>): Promise<Post> {
   }
 }
 
-export { index, createPost }
+async function deletePost(postId: number): Promise<void> {
+  try {
+    const deletedPost = await fetch(`${BASE_URL}/${postId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      }
+    })
+  } catch (error) {
+    console.error('Error deleting post:', error)
+  }
+}
+
+export { index, createPost, deletePost }
