@@ -60,7 +60,6 @@ export default function BottomNav(props: BottomNavProps) {
 
     event.preventDefault()
     setFormData({...formData, profileId: props.user?.profile.id})
-    // console.log(formData)
     const { title, content, categoryId, profileId } = formData
     if (title && content && categoryId !== null && props.user) {
       try {
@@ -69,10 +68,8 @@ export default function BottomNav(props: BottomNavProps) {
           categoryId: categoryId as number | undefined,
         }
         const newPost = await postService.createPost(newPostData);
-        console.log('adding this to posts:', newPost)
         newPost && props.handleNewPost(newPost)
         handleClose()
-        console.log(formData)
       } catch (error) {
         console.error('Error creating post:', error)
       }
